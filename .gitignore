@@ -9,6 +9,7 @@ lib/
 
 *.ppm
 .idea
+.vscode
 cmake-build-*
 
 *.out
