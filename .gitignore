@@ -10,3 +10,5 @@ lib/
 *.ppm
 .idea
 cmake-build-*
+
+*.out
