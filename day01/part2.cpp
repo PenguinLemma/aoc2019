@@ -4,7 +4,7 @@
 
 int ComputeFuelForUnit(int mass)
 {
-    if (mass < 7)
+    if (mass < 9)
         return 0;
     int fuel = mass / 3 - 2;
     return fuel + ComputeFuelForUnit(fuel);

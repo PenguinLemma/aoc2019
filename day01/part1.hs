@@ -1,6 +1,6 @@
 getFuel :: Integer -> Integer
 getFuel mass
-    | mass < 6  = 0
+    | mass < 9  = 0
     | otherwise = mass `div` 3 - 2
 
 readInt :: String -> Integer
