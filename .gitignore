@@ -13,3 +13,5 @@ lib/
 cmake-build-*
 
 *.out
+*.hi
+*.o
