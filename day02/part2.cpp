@@ -2,16 +2,10 @@
 #include <numeric>
 #include <vector>
 
-void RestoreGravityAssistProgram(std::vector<std::size_t>& intcode)
+std::size_t Execute(std::vector<std::size_t> intcode, std::size_t noun, std::size_t verb)
 {
-    if (intcode.size() < 3)
-        return;
-    intcode[1] = 12;
-    intcode[2] = 2;
-}
-
-void Execute(std::vector<std::size_t>& intcode)
-{
+    intcode[1] = noun;
+    intcode[2] = verb;
     for (std::size_t pos_opcode = 0; pos_opcode < intcode.size() && intcode[pos_opcode] != 99;
          pos_opcode += 4) {
         std::size_t const first_operand = intcode[intcode[pos_opcode + 1]];
@@ -21,6 +15,15 @@ void Execute(std::vector<std::size_t>& intcode)
                                                ? first_operand + second_operand
                                                : first_operand * second_operand;
     }
+    return intcode[0];
+}
+
+void Write(std::vector<std::size_t>& intcode)
+{
+    for (std::size_t i = 0; i < intcode.size(); ++i) {
+        std::cout << intcode[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 int main()
@@ -37,8 +40,14 @@ int main()
             std::cin >> element;
             intcode.push_back(element);
         }
-        RestoreGravityAssistProgram(intcode);
-        Execute(intcode);
-        std::cout << intcode[0] << std::endl;
+        for (std::size_t noun = 0; noun < 100; ++noun) {
+            for (std::size_t verb = 0; verb < 100; ++verb) {
+                std::size_t result = Execute(intcode, noun, verb);
+                if (result == 19690720) {
+                    std::cout << 100 * noun + verb << std::endl;
+                    break;
+                }
+            }
+        }
     }
 }
